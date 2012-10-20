@@ -39,8 +39,8 @@ def teardown_request(exception):
 #The functions below allow the users to interact with the site
 @app.route('/')
 def show_entries():
-    cursor = g.db.execute('SELECT title, text FROM entries ORDER BY id desc')
-    entries = [dict(title=row[0], text=row[1]) for row in cursor.fetchall()]
+    cur = g.db.execute('SELECT title, text FROM entries ORDER BY id desc')
+    entries = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]
     return render_template('show_entries.html', entries=entries)
 
 @app.route('/add', methods=['POST'])
